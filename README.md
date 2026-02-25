@@ -35,21 +35,27 @@ real-time-stock-volatility-fabric/
 ## 🏗️ Architecture & Snapshots
 
 graph LR
-    subgraph External
-    A[yfinance API]
+    subgraph "External"
+    A{{yfinance API}}
     end
 
-    subgraph Fabric_Lakehouse
-    B[Landing Zone /Files]
-    C[(🥉 Bronze Layer)]
-    D[(🥈 Silver Layer)]
-    E[(🥇 Gold Layer)]
+    subgraph "Microsoft Fabric Lakehouse"
+    B[Landing Zone]
+    C[(🥉 Bronze)]
+    D[(🥈 Silver)]
+    E[(🥇 Gold)]
     end
 
-    A -->|Python Ingestion| B
-    B -->|Structured Streaming| C
-    C -->|Schema Enforcement| D
-    D -->|Hopping Window| E
+    A -- "Python Ingestion" --> B
+    B -- "readStream" --> C
+    C -- "Transformation" --> D
+    D -- "Hopping Window" --> E
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#fff,stroke:#333
+    style C fill:#cd7f32,stroke:#333
+    style D fill:#c0c0c0,stroke:#333
+    style E fill:#ffd700,stroke:#333
 
 
 
