@@ -34,6 +34,7 @@ real-time-stock-volatility-fabric/
 
 ## 🏗️ Architecture & Snapshots
 
+```mermaid
 graph LR
     subgraph "External"
     A{{yfinance API}}
@@ -56,6 +57,7 @@ graph LR
     style C fill:#cd7f32,stroke:#333
     style D fill:#c0c0c0,stroke:#333
     style E fill:#ffd700,stroke:#333
+```
 
 
 
