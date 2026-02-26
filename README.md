@@ -62,18 +62,22 @@ graph LR
 
 
 ### 🥉 Bronze Layer: Real-Time Ingestion
-A Python-based producer pulls live 1-minute interval data for VOO, VYM, and VGT. Data is landed as raw JSON files in the Lakehouse 'Files' section to simulate a continuous stream for downstream processing.
-📸 **Snapshot**:  
+A Python-based producer pulls live 1-minute interval data for VOO, VYM, and VGT. Data is landed as raw JSON files in the Lakehouse 'Files' section to simulate a continuous stream.
+
+📸 **Snapshots**:  
+![Bronze Setup](./images/bronze_setup_documentation.png)
 ![Bronze Ingestion](./images/bronze_ingestion_log.png)
 
 ### 🥈 Silver Layer: Stream Processing & Cleaning
 Implements `spark.readStream` to monitor the landing zone. It performs real-time schema enforcement, renames columns for Delta compatibility (e.g., `Adj_Close`), and adds event timestamps for temporal analysis.
+
 📸 **Snapshot**:  
 ![Silver Stream](./images/silver_streaming_dashboard.png)
 
 ### 🥇 Gold Layer: Hopping Window Analytics
-The final analytical layer uses **Hopping Windows** (10-minute duration, sliding every 2 minutes) and **Watermarking** to calculate max price volatility (`High - Low`) and moving averages across the ticker stream.
-📸 **Snapshot**:  
+The final analytical layer uses **Hopping Windows** (10-minute duration, sliding every 2 minutes) and **Watermarking** to calculate max price volatility (`High - Low`) and moving averages.
+
+📸 **Snapshots**:  
 ![Gold Results](./images/gold_volatility_results.png)
 ![Gold Stream](./images/gold_streaming_dashboard.png)
 
